@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        /* Matrix Animation Background Style */
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-form {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .login-form input,
+        .login-form button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        .login-form button {
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Canvas for Matrix Animation */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix-canvas"></canvas>
+
+    <div class="login-container">
+        <div class="login-form">
+            <h2>Login</h2>
+            <form onsubmit="loginUser(event)">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required><br><br>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" required><br><br>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Matrix Animation Script
+        const canvas = document.getElementById("matrix-canvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrixChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "#0F0"; // Green color for matrix text
+            ctx.font = `${fontSize}px monospace`;
+
+            drops.forEach((y, index) => {
+                const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                const x = index * fontSize;
+                ctx.fillText(text, x, y * fontSize);
+                if (y * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[index] = 0;
+                }
+                drops[index]++;
+            });
+        }
+
+        setInterval(drawMatrix, 50);
+
+        // Redirect to home.html on login
+        function loginUser(event) {
+            event.preventDefault(); // Prevent form from submitting normally
+            window.location.href = "home.html"; // Redirect to home.html
+        }
+    </script>
+</body>
+</html>
