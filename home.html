@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Achiachiofficial Home page</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta property="og:image" content="https://telegra.ph/file/61ab9f66db0aa55f651d2.jpg">
+    <link rel="shortcut icon" href="https://telegra.ph/file/403aeede55513c146212c.jpg" type="image/x-icon">
+    <meta property="og:title" content="achi achi official web">
+    
+    <style>
+        /* Body Background Animation */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(-99deg, #ff0000, #00ff00, #0000ff, #ff0000);
+            background-size: 400% 400%;
+            animation: animatedBackground 10s ease infinite;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+        }
+
+        /* Header and Footer Styles */
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            width: 100%;
+        }
+        
+        /* Heading and Button Styles */
+        h1 {
+            color: #00f;
+            font-family: Verdana, sans-serif;
+            font-size: 3em;
+            margin: 0;
+        }
+
+        .button, .menu-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            color: white;
+            background-color: black;
+            border-radius: 15px;
+            margin: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-button {
+            background-color: #007BFF;
+        }
+
+        /* Day/Night Toggle Styles */
+        #theme-toggle-button {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        #toggle {
+            display: none;
+        }
+
+        #theme-toggle-button svg #container {
+            fill: #87CEEB; /* Day mode background */
+        }
+
+        #toggle:checked + label svg #container {
+            fill: #2b4360; /* Night mode background */
+        }
+
+        #sun {
+            opacity: 1;
+        }
+
+        #toggle:checked + label svg #sun {
+            opacity: 0;
+        }
+
+        #moon {
+            opacity: 0;
+        }
+
+        #toggle:checked + label svg #moon {
+            opacity: 1;
+        }
+
+        /* Background Animation */
+        @keyframes animatedBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+    </style>
+</head>
+<body id="main-body">
+    <header>
+        <h1>ACHI ACHI OFFICIAL</h1>
+        <!-- Day/Night Toggle -->
+        <input type="checkbox" id="toggle" onclick="toggleBackground()">
+        <label id="theme-toggle-button" for="toggle">
+            <svg width="60" height="30">
+                <rect id="container" width="60" height="30" rx="15"></rect>
+                <circle id="button" cx="15" cy="15" r="13" fill="#FFD700"></circle>
+                <circle id="sun" cx="15" cy="15" r="6" fill="#FFD700"></circle>
+                <circle id="moon" cx="45" cy="15" r="6" fill="#FFFACD"></circle>
+            </svg>
+        </label>
+        <!-- Menu Button -->
+        <button class="menu-button">123</button>
+    </header>
+    
+    <section>
+        <h2>✨Welcome to my web page✨</h2>
+        <p>This is a simple web page created using HTML.</p>
+        <!-- Sri Lanka Time Display -->
+        <div id="time" style="font-size: 1.5em; font-weight: bold; color: #333;"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 𝚊𝚌𝚑𝚒 𝚊𝚌𝚑𝚒 𝚘𝚏𝚏𝚒𝚌𝚒𝚊𝚕</p>
+    </footer>
+
+    <script>
+        function toggleBackground() {
+            const body = document.getElementById('main-body');
+            body.style.backgroundColor = body.style.backgroundColor === 'rgb(43, 67, 96)' ? '#ffffff' : '#2b4360';
+        }
+
+        // Function to update Sri Lanka Time
+        function updateSriLankaTime() {
+            const timeElement = document.getElementById('time');
+            const options = { timeZone: 'Asia/Colombo', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            const now = new Date().toLocaleTimeString('en-US', options);
+            timeElement.textContent = `Sri Lanka Time: ${now}`;
+        }
+
+        // Update time every second
+        setInterval(updateSriLankaTime, 1000);
+    </script>
+</body>
+</html>
